@@ -357,3 +357,6 @@ body {
 th {
     text-align: center;
 }
+table {
+    font-size: 20px;
+}
