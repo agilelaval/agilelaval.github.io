@@ -39,7 +39,7 @@ p {
 }
 
 a {
-    color: #28c3ab;
+    color: #FFDF8E;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -48,7 +48,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #176e61;
+    color: #E0B768;
 }
 
 .light {
@@ -286,17 +286,17 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #28c3ab;
-    color: #28c3ab;
-    background-color: transparent;
+    border: 1px solid #FFDF8E;
+    color: #FFDF8E;
+    background-color: black;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #28c3ab;
+    border: 1px solid #FFDF8E;
     outline: 0;
     color: #000;
-    background-color: #28c3ab;
+    background-color: #FFDF8E;
 }
 
 .btn-huge {
@@ -348,4 +348,12 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #191815;
+}
+
+th {
+    text-align: center;
 }
