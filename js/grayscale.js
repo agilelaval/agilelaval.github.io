@@ -18,3 +18,9 @@ $(function() {
     });
 });
 
+$(function () {
+    $("#cfpButton").bind('click', function(event) {
+        $(this).attr("disabled", true).html("Ouverture imminente !");
+        return false;
+    });
+});
