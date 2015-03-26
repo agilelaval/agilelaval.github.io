@@ -17,13 +17,6 @@ $(function() {
         event.preventDefault();
     });
 });
-
-$(function () {
-    $("#cfpButton").bind('click', function(event) {
-        $(this).attr("disabled", true).html("Ouverture imminente !");
-        return false;
-    });
-});
 $(function () {
     jQuery('#flipcountdownbox').flipcountdown({  
         size:'md',
