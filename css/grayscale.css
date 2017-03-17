@@ -360,3 +360,8 @@ th {
 table {
     font-size: 20px;
 }
+
+.Sponsors-section img, .Partenaires-section img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
