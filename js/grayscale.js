@@ -20,6 +20,6 @@ $(function() {
 $(function () {
     jQuery('#flipcountdownbox').flipcountdown({  
         size:'sm',
-        beforeDateTime:'06/29/2017 00:00:01'
+        beforeDateTime:'06/28/2018 00:00:01'
     });
 });
