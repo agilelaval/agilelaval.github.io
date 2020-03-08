@@ -373,3 +373,13 @@ table {
     letter-spacing: 1px;
     font-size: 12px;
 }
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+    display: none;
+}
+
+.keynote-bio {
+    padding: 0px 20px 0px;
+    text-align: justify
+}
