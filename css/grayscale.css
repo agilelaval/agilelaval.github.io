@@ -127,7 +127,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(../img/intro-bg.jpg) no-repeat scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -141,7 +141,7 @@ a:focus {
 }
 
 .brand-heading {
-    font-size: 40px;
+    font-size: 18px;
 }
 
 .intro-text {
@@ -359,4 +359,27 @@ th {
 }
 table {
     font-size: 20px;
+}
+
+.Sponsors-section img, .Partenaires-section img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.orga {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+    display: none;
+}
+
+.keynote-bio {
+    padding: 0px 20px 0px;
+    text-align: justify
 }

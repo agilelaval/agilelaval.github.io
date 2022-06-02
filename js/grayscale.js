@@ -19,7 +19,7 @@ $(function() {
 });
 $(function () {
     jQuery('#flipcountdownbox').flipcountdown({  
-        size:'md',
-        beforeDateTime:'06/29/2015 00:00:01'
+        size:'sm',
+        beforeDateTime:'06/23/2022 00:00:01'
     });
 });

@@ -7,25 +7,36 @@
     <meta name="description" content="Conf&eacute;rence Agile Laval">
     <meta name="author" content="">
 
+    <!-- Meta data for Apps -->
+    <meta name="apple-itunes-app" content="app-id=1467343161"/>
+
     <title>Agile Laval</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Fonts -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom Theme CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/jquery.flipcountdown.css" />
 
+    <!-- Core JavaScript Files -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flipcountdown.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src="js/grayscale.js"></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
@@ -44,20 +55,43 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">&Agrave; propos</a>
+                        <a href="./2019">Édition 2019</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="#keynoteur">Keynoteurs</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">&Agrave; propos</a>
+                    </li>
+                     <li class="page-scroll">
+                        <a href="#Sponsors">Sponsors</a>
+                    </li>
+                    <!--
+                   <li class="page-scroll">
                         <a href="#programme">Programme</a>
+                    </li>
+                    -->
+                    <li class="page-scroll">
+                        <a href="#Partenaires">Partenaires</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
                     </li>
+                    <!--
+                     <li class="page-scroll">
+                         <a href="http://www.agilelaval.org/presentations/">Pr&eacute;sentations</a> 
+                        <a href="#presentations">Pr&eacute;sentations</a>
+                    </li>-->
                     <li class="page-scroll">
-                        <a href="#venue">Localisation</a>
+                        <a href="#venue">Venir à Agile Laval</a>
                     </li>
+                    <!-- <li class="page-scroll">
+                        <a href="#Presse">Presse</a>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
+            
         </div>
         <!-- /.container -->
     </nav>
@@ -66,31 +100,50 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
+                    <img class="img-responsive col-sm-4 col-sm-offset-4" src="img/LogoAgileLaval2.png" alt="Agile Laval" />
+                     <!-- <img class="img-responsive col-sm-4 col-sm-offset-4" src="img/LogoAgileLaval1.png" alt="Agile Laval" />-->
+                </div>
+                <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Agile Laval<br/>Conf&eacute;rence</h1>
+                        <h1>8&egrave;me &eacute;dition de la journée Agile Laval </h1>
+                        <h1> Jeudi 23 juin 2022, IUT de Laval</h1>
+			    
+			    <p class="intro-text">
+                        <table style="float: none; margin: 0 auto;">
+                            <tbody>
+                            <tr>
+                                <td colspan="4"><div id="flipcountdownbox"></div></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 80px; text-align: center;">jours</td>
+                                <td style="width: 80px; text-align: center;">heures</td>
+                                <td style="width: 80px; text-align: center;">min</td>
+                                <td style="width: 80px; text-align: center;">sec</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </p>
+			    
+			    
+			    
+			    
                         <p class="intro-text">
-                            La conf&eacute;rence sur l'agilit&eacute;, Lundi 29 Juin 2015, Laval.
+				<!--
+                        <a href="https://forms.gle/GDrMzY5eGFMLa4n96" class="btn btn-default btn-lg" >Appel à orateurs (ouvert jusqu'au dimanche 24 Avril minuit)</a> <br/> 
+
+                            <a href="." class="btn btn-default btn-lg" ><s>Appel à orateurs (ouvert jusqu'au dimanche
+                                26 Avril miniut)</s></a><br/>-->
+                            <br/>
+                            <a href="pdf/Dossier sponsoring Agile Laval 2022.pdf" class="btn btn-default btn-lg">Appel à sponsoring</a> <br/>
+                            <a href="programme 2022.pdf" class="btn btn-default btn-lg">Programme Détaillé</a>
+<br/>
+                             <a href="https://my.weezevent.com/agile-laval" class="btn btn-default btn-lg">Pour s'inscrire à l'évènement</a> <br/>
+
+                            <!--<a href="https://drive.google.com/drive/u/1/folders/1_6cTI_mNvs7YekQwr-N-H-7UkVHkmPjZ" class="btn btn-default btn-lg">Support
+                            des sessions</a>-->
+
                         </p>
 
-                        <p class="intro-text">
-                            <table style="float: none; margin: 0 auto;">
-                                <tbody>
-                                    <tr>
-                                        <td colspan="4"><div id="flipcountdownbox"></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 80px; text-align: right;">jours</td>
-                                        <td style="width: 80px; text-align: right;">heures</td>
-                                        <td style="width: 80px; text-align: right;">min</td>
-                                        <td style="width: 80px; text-align: right;">sec</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </p>
-
-                        <p class="intro-text">
-                            <a href="https://www.weezevent.com/agile-laval-2015" class="btn btn-default btn-lg">Inscription gratuite</a>
-                        </p>
                         <div class="page-scroll">
                             <a href="#about" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
@@ -102,42 +155,193 @@
         </div>
     </section>
 
+    <section id="keynoteur" class="container content-section text-center">
+        <div class="container">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Keynoteurs</h2>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <img src="img/people/OlivierMY.jpg" height="200" width="200">
+            <div class="keynote-bio">
+                <p style="text-align: justify">Coach Agile et Coach professionnel
+                    , Olivier accompagne des individus, des équipes et des organisations vers une création de valeur adaptée aux contraintes et aux enjeux du monde actuel.
+                    Il a travaillé pour des clients de secteurs variés (automobile, banque, assurance, édition logicielle, transport, média, agroalimentaire...) et intervient aujourd'hui en tant que freelance.
+                    <a href="#collapseKeynote1" data-toggle="collapse" aria-expanded="false" aria-controls="collapseKeynote1">
+                        <span class="collapsed">plus</span>
+                        <span class="expanded">moins</span>
+                    </a>
+                </p>
+                <div class="collapse" id="collapseKeynote1">
+                    <p>
+                        Sa démarche se veut progressive et centrée sur l’humain afin de mobiliser les énergies vers plus de responsabilisation et d’engagement.
+                        Il porte ainsi une attention particulière à la simplicité et à la co-construction de sens comme leviers de cohérence entre vision, objectifs et actions.
+                    </p>
+                    <p>
+                        Ses inspirations du moment tournent autour de la systémique, du constructionisme social et de la responsabilité, sans oublier des domaines tels que le coaching, la facilitation et la préparation mentale.
+                    </p>
+                    <p>
+                        Enfin, Il essaie de contribuer à la professionnalisation du métier, notamment au travers de son blog (<a href="https://oyomy.fr/" target="_blank">oyomy.fr</a>), par des retours d’expérience détaillés soulignant l’importance d’une posture ouverte, curieuse et respectueuse.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <img src="img/people/sjaillais.jpg" height="200" width="200">
+            <div class="keynote-bio">
+                <p>Simon est un coach agile, facilitateur et associé chez KōKan. De retour avec sa tribu en Bretagne après une magnifique expatriation à Singapour de 4 ans.
+                <a href="#collapseKeynote2" data-toggle="collapse" aria-expanded="false" aria-controls="collapseKeynote2">
+                    <span class="collapsed">plus</span>
+                    <span class="expanded">moins</span>
+                </a>
+                </p>
+                <div class="collapse" id="collapseKeynote2">
+                    <p style="text-align: justify"> Il y a vécu une magnifique expérience de manager d'une équipe diverses ( 18 coachs, 7 nationalités) dans un environnement multiculturel et distribué. Cette expérience lui a permis de mieux comprendre la complexité de ce rôle et l'importance de la culture et du leadership.
+                        Tombé dans l'agilité il y a une dizaine d'années après une brève carrière de développeur, il accompagne aujourd'hui ses clients dans leurs expérimentations, leurs produits, leurs changements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <!-- <h2>&Agrave; propos d'Agile Laval</h2> -->
-                <p>L'agilit&eacute; avec l'ensemble de ses valeurs, de ses principes, de ses
+                <p>L'<a href="http://agilemanifesto.org/iso/fr/manifesto.html">agilit&eacute;</a> avec l'ensemble de ses valeurs, de ses principes, de ses
                 m&eacute;thodes et pratiques, se diffuse progressivement dans nos environnements de
                 travail et dans l'enseignement.</p>
+                
+                <p>La 8ème édition de la conférence AgileLaval 2022 sera encore cette année l’évènement agile
+                    incontournable de la région. C'est le rendez-vous pour tous les professionnels, les enseignants et les étudiants qui souhaiteraient savoir comment s'y prendre, découvrir, échanger, apprendre, expérimenter, tester, approfondir leurs connaissances, ou simplement discuter autour de l’agilité.</p>
+                 <p>Novices ou experts, curieux ou praticiens, venez donc partager et &eacute;changer sur des
+                     th&eacute;matiques agiles.</p>
 
-                <p>&Agrave; cette occasion, <a href="http://www.iut-laval.univ-lemans.fr/fr/index.html">le d&eacute;partement informatique de l'IUT de Laval</a> et <a href="http://www.agilerennes.org/">l'association Agile Rennes</a> vous propose &agrave; tous de participer &agrave; la <a href="2014">troisi&egrave;me</a> &eacute;dition de la conf&eacute;rence Agile Laval.</p>
-
-                <p>Novices ou experts, curieux ou praticiens, venez donc partager et &eacute;changer sur des th&eacute;matiques agiles telles
-                que le Management Agile, la programmation agile, le Lean IT, Lean Startup, Scrum, Kanban, eXtreme Programming ... ou encore l'enseignement en mode Agile.</p>
             </div>
         </div>
-    </section>
+    </section>   
 
-    <section id="programme" class="content-section text-center">
+   <section id="programme" class="content-section text-center">
         <div class="programme-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Programme</h2>
-                    <h3>Lundi 29 Juin</h3>
-                   
+                               
                 </div>
 
-                <img class="img-portfolio img-responsive" src="img/programmeAgileLaval2015V2.1-1.png" alt="Programme">
 
-                <!--<div class="col-lg-8 col-lg-offset-2">
-                    <p class="text-danger"><strong>* Pause d&eacute;jeuner : </strong>
-                        Aucune restauration n’est pr&eacute;vue par l’organisation. Nous
-                        encourageons les participants &agrave; venir avec leur nourriture.</p>
-                </div>-->
+
+                <img class="img-portfolio img-responsive" src="img/premier_planning.png" alt="Programme"> 
+<!--
+                <p> Application Android pour avoir le programme détaillé. </p>
+                
+                <a href='https://play.google.com/store/apps/details?id=fr.xebia.agilelaval&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponible sur Google Play' src='img/google-play-badge.png'/></a>
+
+                <p> Application iOS pour avoir le programme détaillé. </p>
+                <a href='https://apps.apple.com/fr/app/agilelaval/id1467343161'><img alt='Disponible sur Apple Store' src='img/apple-store-badge.png'/></a>
+ -->            
             </div>
         </div>
-    </section>
+      </section> 
+     
 
+    <section id="Sponsors" class="content-section text-center">
+        <div class="Sponsors-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Sponsors</h2>
+                    <div class="well">
+                        <div class="row">                             
+                            <div class="clearfix visible-sm-block"></div>
+                            <h2 class="col-sm-12"><span style="color: #96a5bc; ">--------------PLATINIUM--------------</span></h2>
+                           <!-- <a class="col-sm-4" href="https://www.fr.sogeti.com/" title="Sogeti" target="_blank">
+                            <img class="center-block img-responsive" src="img/sponsors/Sogeti.png" alt="Sogeti">
+                            </a>-->
+                            <a href="pdf/Dossier sponsoring Agile Laval 2022.pdf" class="btn btn-default btn-lg">Pourquoi pas vous </a>
+                            <br/>
+                             <div class="clearfix visible-sm-block"></div>
+                            <h2 class="col-sm-12"><span style="color: #96a5bc; ">-----------------GOLD-----------------</span></h2>
+                            <a class="col-sm-4" href="https://www.fiteco.com/" title="Fiteco" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/fiteco.png" alt="Fiteco">
+                            </a>
+                            <br/>
+                            <div class="clearfix visible-sm-block"></div>
+                            <h2 class="col-sm-12"><span style="color: #96a5bc; ">---------------BRONZE----------------</span></h2>
+                            <a class="col-sm-4" href="https://www.applidev.fr/" title="AppliDev" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/AppliDev.png" alt="AppliDev">
+                            </a>
+                            <a class="col-sm-4" href="https://www.luminess.eu/" title="luminess" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/image001.png" alt="Luminess">
+                           </a>
+				<a class="col-sm-4" href="https://www.emergitude.fr/" title="emergitude" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/emergitude.jpeg" alt="emergitude">
+                            </a>
+                            </a>
+				<a class="col-sm-4" href="https://www.compta.com/" title="ComptaCom" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/ComptaCom.png" alt="comptacom">
+                            </a>
+			    </a>
+				<a class="col-sm-4" href="https://www.hokoha.com/" title="Hokoha" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/hokoha.png" alt="Hokoha">
+                            </a>
+			    </a>
+				<a class="col-sm-4" href="https://yoandcoach.fr/" title="yoandco" target="_blank">
+                                <img class="center-block img-responsive" src="img/sponsors/yoandco.png" alt="yoandco">
+                            </a>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <section id="Partenaires" class="content-section text-center">
+        <div class="Partenaires-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Partenaires</h2>
+                    <div class="well">
+                        <div class="row">
+                            <a class="col-sm-4" href="http://www.iut-laval.univ-lemans.fr/" title="IUT de Laval" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/logoIUTLAVAL.jpg" alt="IUT de Laval" />
+                            </a>
+                            <!-- 
+                            <a class="col-sm-4" href="http://www.agilerennes.org/" title="Agile Rennes" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/AgileRennes.png" alt="Agile Rennes" />
+                            </a> -->
+                            <a class="col-sm-4" href="http://adiil.fr/" title="Association du Département Informatique de l'IUT de Laval" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/Logo_ADIIL.png" alt="Association du Département Informatique de l'IUT de Laval" />
+                            </a>
+                            <div class="clearfix visible-sm-block"></div>
+                            <a class="col-sm-4" href="http://www-lium.univ-lemans.fr/fr/content/bienvenue" title="Site web du LIUM" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/lium.png" alt="LIUM" />
+                            </a>
+                            <a class="col-sm-4" href="http://ic2.univ-lemans.fr/fr/index.html" title="Site web de Institut Informatique Claude Chappe" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/ic2.png" alt="Institut Informatique Claude Chappe">
+                            </a>
+                            <a class="col-sm-4" href="http://www.univ-lemans.fr/fr/index.html" title="Le Mans Université" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/logoLEMANSUNIVERSITE.jpg" alt="Le Mans Université" />
+                            </a>
+                            <div class="clearfix visible-sm-block"></div>
+                            <a class="col-sm-4" href="http://www.laval-technopole.fr/" title="Site web de Laval Mayenne Technopole" target="_blank">
+                                <img class="img-responsive" src="img/Partenaires/LMT.jpg" alt="Laval Mayenne Technopole">
+                            </a>
+                            <div class="col-sm-4">
+                                <a href="http://www.laval.fr/" title="Site web de Laval" target="_blank">
+                                    <img class="img-responsive" src="img/Partenaires/ville laval.jpg" alt="Laval">
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <img class="img-responsive" src="img/Partenaires/logoprn.jpg" alt="PRN">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </section>
+    
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -154,50 +358,82 @@
                 </ul>
                 <p>
                     <i class="fa fa-phone fa-fw"></i> 02 43 59 49 09<br/>
-                    <i class="fa fa-retweet fa-fw"></i> <a href="https://twitter.com/search?q=%23agilelaval15">#AgileLaval15</a>
+
+                    <i class="fa fa-retweet fa-fw"></i> <a href="https://twitter.com/search?q=%23agilelaval20">#AgileLaval20</a>
                 </p>
                 <br/>
                 <!-- <h4>Organisateurs</h4>-->
-                <div class="row">
-                    
-                    <div class="col-lg-3 text-center">
-                        <div class="service-item">
-                            <img class="img-portfolio img-responsive" src="img/people/gcollic.jpg" alt="Guillaume Collic">
-                            <h4>Guillaume Collic</h4>
-                            <p>
-                                <i class="fa fa-twitter"></i>
-                                <a href="https://twitter.com/gcollic">@gcollic</a>
-                            </p>
+                 <h2>Comité d'organisation</h2>
+                 <div class="row">
+                   <div class="col-sm-6">
+                        <div>
+                            <a href="https://twitter.com/iutlaval">
+                                <img src="img/Partenaires/logoIUTLAVAL.jpg" height="500" width="800" alt="iutlaval" />
+                            </a>
                         </div>
                     </div>
-                    <div class="col-lg-3 text-center">
-                        <div class="service-item">
-                            <img class="img-portfolio img-responsive" src="img/people/loubahssi.jpg" alt="Lahcen Oubahssi">
-                            <h4>Lahcen Oubahssi</h4>
+            
+                  </div>
+                  <br/>
+                 <h2>Comité de programme</h2>
+                 <div class="row">
+                    <div class="col-md-3">
+                        <div>
+                            <a href="https://twitter.com/GaelDesprez">
+                                <img src="img/people/gdesprez.png" height="100" width="100" alt="Gaël Desprez">
+                            </a>
                         </div>
-                    </div>
-                     <div class="col-lg-3 text-center">
-                        <div class="service-item">
-                            <img class="img-portfolio img-responsive" src="img/people/shardy.jpg" alt="Serge Hardy">
-                            <h4>Serge Hardy</h4>
-                            <p>
-                                <i class="fa fa-twitter"></i>
-                                <a href="https://twitter.com/sergehardy">@sergehardy</a>
-                            </p>
+                        <p class="orga">Gaël Desprez</p>
+                    </div>                    
+                    <div class="col-md-3">
+                        <div>
+                            <a href="https://twitter.com/FranckHortala">
+                                <img  src="img/people/FH.jpg" height="100" width="100" alt="Franck Hortala">
+                            </a>
                         </div>
+                        <p class="orga">Franck Hortala  </p>
                     </div>
-                    <div class="col-lg-3 text-center">
-                        <div class="service-item">
-                            <img class="img-portfolio img-responsive" src="img/people/sjaillais.jpg" alt="Simon Jaillais">
-                            <h4>Simon Jaillais</h4>
-                            <p>
-                                <i class="fa fa-twitter"></i>
-                                <a href="https://twitter.com/sjaillais">@sjaillais</a>
-                            </p>
+                    <div class="col-md-3">
+                        <div>
+                            <a href="https://twitter.com/LahcenOubahssi">
+                                <img src="img/people/LOubahssi.jpg" height="100" width="100" alt="Lahcen Oubahssi">
+                            </a>
                         </div>
+                        <p class="orga">Lahcen Oubahssi</p>
                     </div>
-                   
-                </div>
+                    <div class="col-md-3">
+                        <div>
+                            <a href="https://www.linkedin.com/in/jeremiegroulet/">
+                                <img src="img/people/jgroulet.jpg" height="100" width="100" alt="Jérémie Groulet">
+                            </a>
+                        </div>
+                        <p class="orga">Jérémie Groulet</p>
+                    </div>
+                     <div class="col-md-3">
+                        <div>
+                            <a href="https://www.linkedin.com/in/laura-nugre-53218065/">
+                                <img src="img/people/laura.png" height="100" width="100" alt="Laura Nugre">
+                            </a>
+                        </div>
+                        <p class="orga">Laura Nugre</p>
+                    </div>
+                     <div class="col-md-3">
+                        <div>
+                            <a href="https://www.linkedin.com/in/celine-janssens/">
+                                <img src="img/people/cjanssens.jpg" height="100" width="100" alt="Céline Janssens">
+                            </a>
+                        </div>
+                        <p class="orga">Céline Janssens</p>
+                    </div>
+                     <div class="col-md-3">
+                        <div>
+                            <a href="https://www.linkedin.com/in/aude-raban-2858a3113/">
+                                <img src="img/people/araban.jpg" height="100" width="100" alt="Aude Raban">
+                            </a>
+                        </div>
+                        <p class="orga">Aude Raban</p>
+                    </div>
+                  </div>
             </div>
         </div>
     </section>
@@ -205,28 +441,85 @@
     <section id="venue" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Localisation</h2>
+                <h2>Venir à Agile Laval</h2>
+				<p>Pour vous rendre à l'IUT de Laval, plusieurs solutions s'offrent à vous :</p>
+
+                <h3>A pied</h3>
+				<p>L'IUT se trouve à 20 minutes de la gare SNCF. Vous devez emprunter la passerelle  (qui surplombe les voies) pour vous rendre en direction de l'IUT.
+                </p>
+
+   				<h3>En bus - Réseau des Transports Urbains Lavallois (TUL)</h3>
+
+				<p>Le réseau des transports urbains lavallois dessert l'IUT à partir de la gare SNCF et du centre ville.<br/>
+
+				ligne B - arrêt “centre universitaire”<br/>
+				ligne LANO - arrêt “Gilles de Gennes”<br/>
+				ou ligne N - arrêt “Coubertin”<br/>
+
+				<a href="https://www.tul-laval.com/index.php">Consultez le plan du réseau TUL</a>
+                </p>
+    			<h3>En vélo</h3>
+
+				<p>Le VELITUL est le service de vélo en libre service proposé par Laval Agglomération.<br/>
+					Une station se trouve devant l'IUT.<br/>
+				<a href="https://www.tul-laval.com/index.php">Consultez le page VELITUL</a>
+					
+                </p>
+                <h3>Covoiturage</h3>
+                <p>
+                	Une annonce sera crée lorsque l'évènement arrivera à grand pas.<br>
+                	<!--
+                    Cher Automobiliste voyageant vers #AgileLaval20. <br/>
+                    Serais-tu prêt à partager ton véhicule avec de joyeux participants, dans ce cas, poste une annonce sur ce
+                    covoiturage entre amis ci-dessous. <br>
+                    N'hésite pas non plus à remplir ton véhicule avec de nouveaux participants<br>
+                    N'hésite pas non plus à remplir ton véhicule avec de nouveaux participants<br>
+			<a href="https://www.togetzer.com/covoiturage-evenement/a153s4">Annonce Covoiturage</a>
+             
+                <a href="https://www.togetzer.com/covoiturage-evenement/a153s4"><img
+                        class="img-portfolio img-responsive" src="img/Logo_TOGETZER.png" alt="Programme"></a> -->
+   		</p>
+                <h3>En voiture</h3>
+ 				<p>Par l’autoroute :<br/>
+
+				En venant du Mans : prendre la première sortie "Laval Centre" <br/>
+
+				En venant de Rennes : prendre la 2e sortie "Laval Est" Après le Péage, au rond point, prendre direction "Laval-Changé ", puis toujours tout droit, vous arrivez à un rond point (statue anneau métallique), prendre "Laval Centre". Au rond point suivant continuez tout droit (direction gare), puis  tourner à gauche "rue Christian d'Elva" et faire quelques mètres et l'IUT se trouvera en face de vous.<br/>
+
+				Par la nationale :<br/>
+
+				Prendre la rocade, direction "Mayenne - Alençon" lorsque vous arriverez au rond point avec la statue anneau métallique, prendre "Laval Centre". Au rond point suivant continuez tout droit (direction gare), puis  tourner à gauche  "rue Christian d'Elva" et faire quelques mètres et l'IUT se trouvera en face de vous.</p>
+
+
+                <h3>Localisation</h3>
                 <p>IUT de Laval, département informatique<br/>
                 52 Rue des Docteurs Calmette et Gu&eacute;rin, 53000 Laval<br/>
                 <a href="http://www.iut-laval.univ-lemans.fr">www.iut-laval.univ-lemans.fr</a></p>
+                <p>Coordonnées GPS : Latitude : 48.085762 - Longitude : -0.7570580000000291</p>
+
             </div>
         </div>
-    </section>
+    </section>    
 
     <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2665.243207987698!2d-0.7589459008026127!3d48.08624901849987!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2afd1c6255bdbcb0!2sI.U.T.!5e0!3m2!1sen!2s!4v1401539871370"></iframe>
 
-    <p class="text-muted text-center">Photo de <a href="https://twitter.com/YannWalkowiak">Yann Walkowiak</a>
+    <!--
+    <section id="Presse" class="content-section text-center">
+        <div class="Presse-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Presse</h2>   
+                </div>
+            </div>
+        </div>
+    </section> -->
+<section >
+ <div align="center">
+    <p ><span style="font-size: x-small; ">Photo de <a href="https://www.flickr.com/photos/23912576@N05/3140433016">Ludovic Bertron</a>
     <br/>Source sur <a href="https://github.com/agilelaval"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-    <br/>Th&egrave;me bas&eacute; sur <a href="http://startbootstrap.com/grayscale">Grayscale</a></p>
-
-    <!-- Core JavaScript Files -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="js/jquery.flipcountdown.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/grayscale.js"></script>
+    <br/>Th&egrave;me bas&eacute; sur <a href="http://startbootstrap.com/grayscale">Grayscale</a></span></p>
+     </div>
+</section>
 
 </body>
 
