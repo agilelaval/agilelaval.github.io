@@ -20,6 +20,6 @@ $(function() {
 $(function () {
     jQuery('#flipcountdownbox').flipcountdown({  
         size:'sm',
-        beforeDateTime:'06/13/2024 00:00:01'
+        beforeDateTime:'06/12/2025 00:00:01'
     });
 });
