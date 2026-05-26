@@ -1,0 +1,105 @@
+---
+title: Mentions légales
+description: "Mentions légales du site de l'événement Agile Laval."
+---
+
+<main class="legal-page">
+    <section class="section-header legal-hero">
+        <div class="legal-hero-content">
+            <h1 class="legal-title">Mentions légales</h1>
+            <span class="section-description">Dernière mise à jour : 10/05/2026</span>
+            <p class="legal-intro">
+                Cette page rassemble les informations essentielles du site. Elle est volontairement simple pour être
+                mise à jour facilement au fil des évolutions du projet.
+            </p>
+        </div>
+
+        <nav class="legal-toc" aria-label="Sommaire des mentions légales">
+            <a href="#editeur">Éditeur</a>
+            <a href="#hebergement">Hébergement</a>
+            <a href="#propriete">Propriété intellectuelle</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </section>
+
+    <div class="legal-content">
+        <section class="legal-card" id="editeur">
+            <h2 class="legal-card-title">Éditeur du site</h2>
+            <dl class="legal-list">
+                <div class="legal-list-item">
+                    <dt class="legal-term">Association</dt>
+                    <dd class="legal-definition">Agile Laval</dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Adresse e-mail</dt>
+                    <dd class="legal-definition">
+                        <a href="mailto:{{ site.data.variables.association.email }}" class="legal-link">
+                            {{ site.data.variables.association.email }}
+                        </a>
+                    </dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Responsable de publication</dt>
+                    <dd class="legal-definition">Jérémie Groulet</dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Numéro SIRET</dt>
+                    <dd class="legal-definition">913 942 850 00011</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="legal-card" id="hebergement">
+            <h2 class="legal-card-title">Hébergement</h2>
+            <dl class="legal-list">
+                <div class="legal-list-item">
+                    <dt class="legal-term">Hébergeur</dt>
+                    <dd class="legal-definition">GitHub Pages</dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Adresse</dt>
+                    <dd class="legal-definition">88 Colin P. Kelly Jr Street, San Francisco, CA 94107, États-Unis</dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Site web</dt>
+                    <dd class="legal-definition">
+                        <a href="https://pages.github.com" class="legal-link" target="_blank" rel="noopener">
+                            pages.github.com
+                        </a>
+                    </dd>
+                </div>
+                <div class="legal-list-item">
+                    <dt class="legal-term">Conditions d'utilisation</dt>
+                    <dd class="legal-definition">
+                        <a href="https://docs.github.com/fr/pages/getting-started-with-github-pages/about-github-pages" class="legal-link" target="_blank" rel="noopener">
+                            Documentation GitHub Pages
+                        </a>
+                    </dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="legal-card" id="propriete">
+            <h2 class="legal-card-title">Propriété intellectuelle</h2>
+            <p class="legal-card-text">
+                L’ensemble des contenus présents sur ce site, sauf mention contraire, est protégé par le droit d’auteur
+                et demeure la propriété de leurs auteurs respectifs. Toute reproduction, diffusion ou réutilisation doit
+                faire l’objet d’une autorisation préalable.
+            </p>
+            <p class="legal-note">
+                Vous pouvez adapter ce texte en fonction de vos licences, des crédits images et des contenus tiers
+                utilisés sur le site.
+            </p>
+        </section>
+
+        <section class="legal-card" id="contact">
+            <h2 class="legal-card-title">Contact</h2>
+            <p class="legal-card-text">
+                Pour toute question concernant ce site ou son contenu, vous pouvez écrire à
+                <a href="mailto:{{ site.data.variables.association.email }}" class="legal-link">
+                    {{ site.data.variables.association.email }}
+                </a>.
+            </p>
+        </section>
+    </div>
+</main>

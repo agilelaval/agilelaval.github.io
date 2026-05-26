@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+{% if page.redirect_if_not_step and site.data.variables.event.step != page.redirect_if_not_step %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_url | default: '/' | relative_url }}">
+    <script>window.location.replace("{{ page.redirect_url | default: '/' | relative_url }}");</script>
+    <title>Redirection...</title>
+</head>
+<body>
+    <p>Redirection en cours...</p>
+</body>
+{% else %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+    <link rel="shortcut icon" href="{{ '/assets/images/logo_rond_bordeau.svg' | relative_url }}" type="image/x-icon">
+    <script src="{{ '/assets/js/header.js' | relative_url }}" defer></script>
+    {% seo %} <!-- Jekyll SEO Tag -->
+    <meta name="theme-color" content="#ff6600">
+</head>
+
+<body>
+    {% include header.html %}
+    {{ content }}
+    {% include footer.html %}
+</body>
+{% endif %}
+</html>

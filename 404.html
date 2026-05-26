@@ -1,0 +1,44 @@
+---
+title: "Page introuvable"
+description: "Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil ou explorez nos autres pages."
+---
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<main class="not-found-page" aria-labelledby="not-found-title">
+		<section class="not-found-card">
+			<span class="not-found-watermark" aria-hidden="true">404</span>
+			<p class="not-found-code">404</p>
+			<h1 id="not-found-title" class="not-found-title">Page introuvable</h1>
+			<p class="not-found-text">
+				Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
+				Retournez à l'accueil ou explorez nos autres pages.
+			</p>
+
+			<div class="not-found-actions">
+				<a href="{{ '/' | relative_url }}" class="cta-button cta-solid-shadow not-found-primary">
+					<svg class="not-found-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+						<path d="M5.5 10.5V20h5.5v-5.5h2V20h5.5v-9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+					Retour à l'accueil
+				</a>
+				<a href="{{ '/' | relative_url }}" class="cta-outline not-found-secondary" onclick="if (document.referrer) { history.back(); } else { window.location.href = '{{ '/' | relative_url }}'; } return false;">
+					<svg class="not-found-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path d="M15 18 9 12l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+					Page précédente
+				</a>
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>

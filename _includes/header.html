@@ -1,0 +1,50 @@
+<header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="brand">
+        <img src="{{ '/assets/images/logo_carre_bordeau.svg' | relative_url }}" alt="Logo Agile Laval" class="logo-img">
+        <span class="brand-name">Agile Laval</span>
+    </a>
+
+    <button class="burger-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <div class="header-content">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{{ '/' | relative_url }}" {% if page.url=="/" or page.url=="/index.html" %} class="active" {% endif %}>Accueil</a>
+                </li>
+                <li>
+                {% if site.data.variables.event.step == 4 %}
+                    <a href="{{ '/edition.html' | relative_url }}" {% if page.url=="/edition.html" %} class="active" {% endif %}>Édition {{ site.data.variables.event.datetime.start | date: '%Y' }}</a>
+                {% else %}
+                    <div class="disabled-link-wrapper">
+                        <a href="#" class="disabled">Édition {{ site.data.variables.event.datetime.start | date: '%Y' }}</a>
+                        <div class="coming-soon-tooltip">
+                            <svg width="24" height="24" viewBox="0 0 126 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                                <g transform="matrix(1,0,0,1,-51094.957357,-22213.311809)">
+                                    <g transform="matrix(-1.302099,0.014605,-0.014605,-1.302099,87104.110506,45609.522538)">
+                                        <g transform="matrix(1,0,0,1,3890.871368,-1608.912696)">
+                                            <path d="M23535.457,19827.255C23536.181,19836.73 23532.54,19846.413 23524.783,19853.07C23520.713,19856.562 23515.992,19858.807 23511.087,19859.841L23511.087,19852.598C23514.346,19851.692 23517.463,19850.074 23520.199,19847.727C23526.336,19842.461 23529.135,19834.741 23528.391,19827.255L23535.457,19827.255Z" style="fill:rgb(255,247,230);"/>
+                                        </g>
+                                        <g transform="matrix(1,0,0,1,3890.871368,-1608.912696)">
+                                            <path d="M23465.095,19850.8C23459.356,19832.861 23464.457,19812.423 23479.639,19799.396C23482.474,19796.963 23488.091,19793.254 23488.091,19793.254L23488.091,19782.254L23506.119,19782.254L23506.119,19775.632L23484.69,19775.632L23484.69,19764.537L23506.119,19764.537L23506.119,19757.916L23490.954,19757.916L23490.954,19746.82L23531.219,19746.82L23531.219,19757.916L23516.055,19757.916L23516.055,19764.537L23537.483,19764.537L23537.483,19775.632L23516.055,19775.632L23516.055,19782.254L23534.082,19782.254L23534.082,19793.254C23534.082,19793.254 23543.622,19799.804 23547.737,19804.599C23550.829,19808.203 23553.296,19812.132 23555.148,19816.255C23556.744,19819.806 23557.883,19823.501 23558.573,19827.255C23561.581,19843.614 23556.056,19861.095 23542.534,19872.697C23522.306,19890.054 23491.792,19887.722 23474.436,19867.494C23472.534,19865.278 23470.869,19862.939 23469.438,19860.507C23467.611,19857.401 23466.164,19854.144 23465.095,19850.8ZM23507.719,19798.921C23500.256,19799.59 23492.924,19802.506 23486.809,19807.752C23479.136,19814.336 23474.798,19823.373 23473.961,19832.715C23473.455,19838.359 23474.227,19844.114 23476.312,19849.507C23477.799,19853.354 23479.955,19857.017 23482.792,19860.324L23482.95,19860.507C23496.376,19875.954 23519.809,19877.687 23535.364,19864.341C23546.357,19854.908 23550.504,19840.442 23547.32,19827.255C23546.397,19823.43 23544.856,19819.711 23542.687,19816.255C23541.712,19814.703 23540.611,19813.203 23539.381,19811.769C23531.228,19802.268 23519.316,19797.881 23507.719,19798.921Z" style="fill:rgb(255,247,230);"/>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            Bientôt dispo!
+                        </div>
+                    </div>
+                {% endif %}
+                </li>
+                <li><a href="{{ '/a-propos.html' | relative_url }}" {% if page.url=="/a-propos.html" %} class="active" {% endif %}>À propos</a>
+                </li>
+            </ul>
+        </nav>
+        {% if site.data.variables.event.step > 2 %}
+        <a href="{{ site.data.variables.event.urls.tickets }}" class="cta-button" target="_blank" rel="noopener noreferrer">Billetterie</a>
+        {% endif %}
+    </div>
+</header>

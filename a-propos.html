@@ -1,0 +1,114 @@
+---
+title: À propos de l'association
+description: "Découvrez l'équipe et la mission derrière Agile Laval. Une association dédiée à la promotion et à la démocratisation des pratiques agiles."
+---
+
+<section class="about-hero">
+    <div class="about-content">
+        <span class="sur-title">À propos d'Agile Laval</span>
+        <h1 class="about-title">
+            NOTRE VISION<br>
+            <span class="title-highlight">DE L'AGILITÉ.</span>
+        </h1>
+        <p class="about-description">Agile Laval est une association à but non lucratif qui organise chaque année un événement dédié à l'agilité, réunissant praticiens, managers et curieux pour partager : l'agilité made in Laval.</p>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </div>
+</section>
+
+<section class="edition-stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">{{ site.data.variables.about.total_events }}</div>
+            <div class="stat-label">Éditions organisées</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ site.data.variables.about.total_participants }}</div>
+            <div class="stat-label">Participants au total</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ site.data.variables.about.total_speakers }}</div>
+            <div class="stat-label">Orateurs invités</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">{{ site.data.variables.about.total_sponsors }}</div>
+            <div class="stat-label">Entreprises partenaires</div>
+        </div>
+    </div>
+</section>
+
+<section class="edition-quote">
+    <div class="quote-content">
+        <div class="quote-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.15" width="48" height="48">
+                <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+        </div>
+        <blockquote class="quote-text">
+            L'agilité, ce n'est pas une méthode. C'est un état d'esprit, une culture, une façon d'être ensemble pour
+            créer de la valeur.
+        </blockquote>
+        <cite class="quote-author">- Agile Laval</cite>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="section-header">
+        <span class="sur-title">Les visages derrière l'événement</span>
+        <h2 class="section-title">L'équipe</h2>
+    </div>
+
+    <div class="team-grid">
+        {% for member in site.team %}
+        <article class="team-member">
+            <div class="member-photo-container">
+                <img src="{{ member.photo | relative_url }}" alt="{{ member.name }}" class="member-photo">
+            </div>
+            <h3 class="member-name">{{ member.name }}</h3>
+            <p class="member-role">{{ member.role }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="section-header">
+        <span class="sur-title">Ce qui nous guide</span>
+        <h2 class="section-title">Nos valeurs</h2>
+    </div>
+
+    <div class="values-grid">
+        <article class="value-card">
+            <div class="value-icon">💡</div>
+            <h3 class="value-title">Partage &<br>transmission</h3>
+            <p class="value-text">Nous croyons que la connaissance se multiplie quand elle est partagée. Chaque édition
+                est l'occasion de transmettre des savoirs pratiques et des retours d'expérience.</p>
+        </article>
+
+        <article class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3 class="value-title">Inclusion &<br>diversité</h3>
+            <p class="value-text">L'agilité appartient à tous. Nous œuvrons pour une communauté ouverte, représentative,
+                où chaque voix compte, quel que soit le secteur, le niveau ou le parcours.</p>
+        </article>
+
+        <article class="value-card">
+            <div class="value-icon">🔭</div>
+            <h3 class="value-title">Curiosité &<br>innovation</h3>
+            <p class="value-text">Nous challengeons les idées reçues, encourageons l'expérimentation et accueillons les
+                nouvelles pratiques avec enthousiasme et bienveillance.</p>
+        </article>
+
+        <article class="value-card">
+            <div class="value-icon">📍</div>
+            <h3 class="value-title">Ancrage local</h3>
+            <p class="value-text">L'agilité, pensée et partagée en Mayenne. Nous avons à cœur de bâtir une communauté locale soudée, où les talents et les entreprises de la région se rencontrent, échangent leurs expériences et font vivre l'agilité sur notre territoire.</p>
+        </article>
+    </div>
+</section>

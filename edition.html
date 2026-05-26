@@ -1,0 +1,371 @@
+---
+title: "Édition 2026"
+description: "Tout ce qu'il faut savoir sur l'édition 2026 d'Agile Laval : programme complet, intervenants, billetterie et informations pratiques. Ne manquez pas l'événement !"
+redirect_if_not_step: 4
+redirect_url: "/"
+---
+
+{% if site.data.variables.event.step == 4 %}
+<section class="edition-hero">
+    <div class="edition-content">
+        <span class="sur-title">L'événement</span>
+        <h1 class="edition-title">
+            AGILE LAVAL<br>
+            <span class="edition-year">{{ site.data.variables.event.datetime.start | date: "%Y" }}</span>
+        </h1>
+        <p class="edition-description">Une journée entière dédiée à l'agilité, avec des conférences, ateliers et
+            rencontres inspirantes.</p>
+        <div class="edition-info">
+            <p class="info-date">📅 {{ site.data.variables.event.datetime.start | localize: '%d %B %Y' }}</p>
+            <p class="info-location">{{ site.data.variables.event.location.name }} — {{
+                site.data.variables.event.location.address }}</p>
+        </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </div>
+</section>
+
+<section class="program-section" id="programme">
+    <div class="section-header">
+        <span class="sur-title">Déroulement de la journée</span>
+        <h2 class="section-title">Programme interactif</h2>
+        <span class="section-description">Cliquez sur une session pour comparer toutes les présentations et ateliers du même créneau horaire.</span>
+    </div>
+
+    <div id="program-grid-container" class="program-grid">
+        <!-- Généré par JS -->
+    </div>
+</section>
+
+<!-- Modal pour les détails de session -->
+<div class="modal-overlay" id="session-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="modal-close" aria-label="Fermer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        
+        <div class="modal-header">
+            <h3 class="modal-title">DÉTAILS DE LA SESSION</h3>
+            <p class="modal-meta" id="modal-timeslot">Créneau : --:-- - --:-- • -/-</p>
+        </div>
+
+        <div class="modal-badges">
+            <div class="badge-group">
+                <span class="badge" id="modal-format">FORMAT</span>
+                <span class="info-text" id="modal-room">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Salle
+                </span>
+                <span class="info-text" id="modal-capacity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    max --
+                </span>
+            </div>
+            <span class="track-badge" id="modal-track">TRACK: --</span>
+        </div>
+
+        <div class="speaker-profile">
+            <div class="speaker-avatar" id="modal-speaker-avatar">
+                <!-- Initials ou Image -->
+            </div>
+            <div class="speaker-info">
+                <p class="name" id="modal-speaker-name">Nom Orateur</p>
+                <p class="job" id="modal-speaker-job">Job • Entreprise</p>
+            </div>
+            <div class="speaker-links" id="modal-speaker-links">
+                <!-- Liens RS injectés ici -->
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <h4 class="session-title-large" id="modal-session-title">Titre de la session</h4>
+            <p class="session-desc" id="modal-session-desc">Description...</p>
+
+            <div class="modal-nav">
+                <button class="nav-btn" id="modal-prev" aria-label="Précédent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="modal-dots" id="modal-dots">
+                    <!-- Points de pagination générés par JS -->
+                </div>
+                <button class="nav-btn" id="modal-next" aria-label="Suivant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Logique Javascript du programme -->
+<!-- Chargement des données CSV via Liquid pour exposition JS -->
+<script>
+    const EVENT_END_TIME = new Date("{{ site.data.variables.event.datetime.end }}");
+    const EVENT_END_TIME_STR = String(EVENT_END_TIME.getHours()).padStart(2, '0') + ":" + String(EVENT_END_TIME.getMinutes()).padStart(2, '0');
+
+    const creneauxData = {
+        {% for row in site.data.creneaux %}
+        {{ row["Numéro du créneau"] }}: {
+            debut: "{{ row["Heure de début"] }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    };
+
+    const programData = [
+        {% for row in site.data.program %}
+        {
+            slotNumber: {{ row["Numéro du créneau"] | default: 1 }},
+            slotSpan: {{ row["Nombre de créneau"] | default: 1 }},
+            slotFormat: "{{ row["Format du créneau"] | escape }}",
+            location: "{{ row["Lieu"] | escape }}",
+            image: "{{ row["Photo de l'orateur"] | escape }}",
+            oratorName: "{{ row["Prénom Nom"] | escape }}",
+            oratorJob: "{{ row["Intitulé de poste"] | escape }}",
+            company: "{{ row["Entreprise"] | escape }}",
+            linkedinUrl: "{{ row["Lien profil LinkedIn"] | escape }}",
+            maxCapacity: "{{ row["Nombre max. de participants"] | escape }}",
+            sessionTitle: "{{ row["Titre de la session"] | escape }}",
+            sessionDesc: "{{ row["Description de la session"] | escape }}",
+            sessionTrack: "{{ row["Track"] | escape }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ];
+</script>
+<script src="{{ '/assets/js/program.js' | relative_url }}"></script>
+
+<section class="speakers-section" id="orateurs">
+    <div class="section-header">
+        <span class="sur-title">Rencontrez des experts</span>
+        <h2 class="section-title">Orateurs</h2>
+    </div>
+
+    <div class="speakers-grid">
+        {% assign sessions_by_speaker = site.data.program | group_by: "Prénom Nom" %}
+        {% for speaker_group in sessions_by_speaker %}
+            {% assign speaker_name = speaker_group.name %}
+            {% if speaker_name == null or speaker_name == "" or speaker_name == " " %}{% continue %}{% endif %}
+            {% assign session = speaker_group.items | first %}
+            
+            <article class="speaker-profile">
+                {% if session["Photo de l'orateur"] and session["Photo de l'orateur"] != "" %}
+                    <img src="{{ '/assets/images/orators/' | append: session["Photo de l'orateur"] | relative_url }}" alt="{{ speaker_name }}" class="speaker-photo">
+                {% else %}
+                    <div class="speaker-photo-placeholder">
+                        {% assign words = speaker_name | split: ' ' %}
+                        {% assign initials = '' %}
+                        {% for word in words limit:2 %}
+                            {% assign initial = word | slice: 0, 1 | upcase %}
+                            {% assign initials = initials | append: initial %}
+                        {% endfor %}
+                        <span>{{ initials }}</span>
+                    </div>
+                {% endif %}
+                <div class="speaker-info">
+                    <h3 class="speaker-name">{{ speaker_name }}</h3>
+                    {% if session["Intitulé de poste"] and session["Intitulé de poste"] != "" %}<p class="speaker-job">{{ session["Intitulé de poste"] }}</p>{% endif %}
+                    {% if session["Entreprise"] and session["Entreprise"] != "" %}<p class="speaker-company">{{ session["Entreprise"] }}</p>{% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+    <!-- Bouton Voir plus / moins -->
+    <div class="speakers-toggle" id="speakers-toggle">
+        <button class="cta-button cta-outline" id="speakers-toggle-btn">
+            <span id="speakers-toggle-text">Voir plus d'orateurs</span>
+        </button>
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const grid = document.querySelector('.speakers-grid');
+    if (!grid) return;
+    
+    const cards = Array.from(grid.querySelectorAll('.speaker-profile'));
+    const toggleContainer = document.getElementById('speakers-toggle');
+    const toggleBtn = document.getElementById('speakers-toggle-btn');
+    const toggleText = document.getElementById('speakers-toggle-text');
+    let isExpanded = false;
+
+    function updateSpeakersView() {
+        if (isExpanded) {
+            cards.forEach(c => c.style.display = '');
+            toggleText.textContent = 'Voir moins';
+            return;
+        }
+        
+        // Sauvegarder la position pour éviter les sauts
+        const currentScroll = window.scrollY;
+        cards.forEach(c => c.style.display = ''); // Afficher tout temporairement
+        
+        // Calculer les lignes
+        let rows = 1;
+        let firstTop = cards.length > 0 ? cards[0].offsetTop : 0;
+        let lastTop = firstTop;
+        let limitIndex = cards.length;
+
+        for (let i = 1; i < cards.length; i++) {
+            if (cards[i].offsetTop > lastTop + 10) {
+                rows++;
+                lastTop = cards[i].offsetTop;
+            }
+            if (rows > 2) {
+                limitIndex = i;
+                break;
+            }
+        }
+
+        if (limitIndex < cards.length) {
+            for (let i = limitIndex; i < cards.length; i++) {
+                cards[i].style.display = 'none';
+            }
+            toggleContainer.style.display = 'flex';
+            toggleText.textContent = 'Voir plus d\'orateurs';
+        } else {
+            toggleContainer.style.display = 'none';
+        }
+        window.scrollTo(0, currentScroll);
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            updateSpeakersView();
+            // Scroll en haut de la grille si on réduit
+            if (!isExpanded) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+
+    window.addEventListener('resize', () => { 
+        if(!isExpanded) updateSpeakersView(); 
+    });
+    
+    // Attendre que les images chargent (si elles affectent la hauteur)
+    setTimeout(updateSpeakersView, 100);
+});
+</script>
+
+<section class="access-section" id="acces">
+    <div class="section-header">
+        <span class="sur-title">Informations pratiques</span>
+        <h2 class="section-title">Venir à Agile Laval</h2>
+    </div>
+
+    <div class="access-container">
+        <!-- Main Location Card -->
+        <article class="access-main-card">
+            <div class="location-header">
+                <div class="location-title-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <h3 class="location-title">{{ site.data.variables.event.location.name }}</h3>
+                </div>
+                <p class="location-address">{{ site.data.variables.event.location.address }}</p>
+            </div>
+            <div class="location-map-placeholder" id="event-map" style="padding: 0;"></div>
+        </article>
+
+        <!-- Script pour la carte Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css" type="text/css">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var lat = {{ site.data.variables.event.location.coords.lat }};
+            var lng = {{ site.data.variables.event.location.coords.lng }};
+            var map = L.map('event-map', {
+                gestureHandling: true,
+                gestureHandlingOptions: {
+                    text: {
+                        touch: "Utilisez deux doigts pour déplacer la carte",
+                        scroll: "Utilisez ctrl + défilement pour zoomer la carte",
+                        scrollMac: "Utilisez \u2318 + défilement pour zoomer la carte"
+                    }
+                }
+            }).setView([lat, lng], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var customIcon = L.divIcon({
+                className: 'custom-map-marker',
+                html: '<svg viewBox="0 0 24 24" fill="none" stroke="#70193D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#70193D" stroke="#70193D"></path><circle cx="12" cy="10" r="3" fill="#FFF"></circle></svg>',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            });
+
+            L.marker([lat, lng], {icon: customIcon}).addTo(map)
+                .bindPopup("<b>{{ site.data.variables.event.location.name }}</b><br>{{ site.data.variables.event.location.address }}")
+                .openPopup();
+        });
+        </script>
+
+        <!-- Transport & Accomodation Grid -->
+        <div class="access-grid">
+            <article class="access-card">
+                <div class="access-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="4" y="3" width="16" height="16" rx="2" ry="2"></rect>
+                        <path d="M4 11h16"></path>
+                        <path d="M12 3v8"></path>
+                        <path d="M8 15h0"></path>
+                        <path d="M16 15h0"></path>
+                        <path d="M8 19v2"></path>
+                        <path d="M16 19v2"></path>
+                    </svg>
+                </div>
+                <h4 class="access-title">EN TRAIN</h4>
+                <p class="access-text">L’ESIEA est à 20 min à pied de la gare SNCF. Vous pouvez aussi prendre le bus (Ligne B vers Aquabulle) juste en face de la gare.</p>
+            </article>
+            <article class="access-card">
+                <div class="access-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                        </path>
+                        <circle cx="7" cy="17" r="2"></circle>
+                        <path d="M9 17h6"></path>
+                        <circle cx="17" cy="17" r="2"></circle>
+                    </svg>
+                </div>
+                <h4 class="access-title">EN VOITURE</h4>
+                <p class="access-text">Parking gratuit sur place (150 places). L'événement ayant lieu en période
+                    scolaire, le parking peut être assez sollicité.</p>
+            </article>
+            <article class="access-card">
+                <div class="access-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M8 6v6"></path>
+                        <path d="M15 6v6"></path>
+                        <path d="M2 12h19.6"></path>
+                        <path d="M18 18h3s1-2 1-6v-2.6A3.4 3.4 0 0 0 18.6 6H4a2 2 0 0 0-2 2v10h3"></path>
+                        <circle cx="7" cy="18" r="2"></circle>
+                        <circle cx="15" cy="18" r="2"></circle>
+                    </svg>
+                </div>
+                <h4 class="access-title">EN BUS</h4>
+                <p class="access-text">Arrêt « Centre universitaire » via les lignes B
+(Aquabulle) ou H (Marais). Ticket à 1,30 €
+(uniquement en espèces ou sur l'application). <a href="https://www.tul-laval.com/" target="_blank" rel="noopener noreferrer" class="access-link">Voir le site du TUL</a></p>
+                    
+            </article>
+        </div>
+    </div>
+</section>
+{% endif %}

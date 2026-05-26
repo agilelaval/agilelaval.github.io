@@ -1,0 +1,73 @@
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="footer-col brand-col">
+            <a href="{{ '/' | relative_url }}" class="footer-logo">
+                <img src="{{ '/assets/images/logo_carre_beige.svg' | relative_url }}" alt="Agile Laval Logo" class="logo-img"
+                    onerror="this.style.display='none'">
+            </a>
+            <p>Association événementielle dédiée à la promotion de l'Agilité dans la région lavalloise.</p>
+        </div>
+
+        <div class="footer-col nav-col">
+            <h4 class="footer-title">Navigation</h4>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">Accueil</a></li>
+                {% if site.data.variables.event.step == 4 %}
+                <li><a href="{{ '/edition.html' | relative_url }}">Édition {{ site.data.variables.event.datetime.start | date: "%Y" }}</a>
+                </li>
+                {% endif %}
+                <li><a href="{{ '/a-propos.html' | relative_url }}">À propos</a></li>
+                <li><a href="{{ '/liens.html' | relative_url }}">Liens utiles</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col legal-col">
+            <h4 class="footer-title">Légal</h4>
+            <ul>
+                <li><a href="{{ '/mentions-legales.html' | relative_url }}">Mentions légales</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col social-col">
+            <h4 class="footer-title">Suivez-nous</h4>
+            <ul class="social-links-footer">
+                <li>
+                    <a href="{{ site.data.variables.socials.linkedin }}" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ site.data.variables.socials.x }}" aria-label="X / Twitter">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ site.data.variables.socials.instagram }}" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="copyright">&copy; {{ 'today' | date: "%Y" }} Agile Laval</p>
+        <p class="credits">Made with <span class="heart">❤️</span> by Elypsis</p>
+    </div>
+</footer>

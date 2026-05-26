@@ -1,0 +1,35 @@
+association:
+  email: "contact@agilelaval.org"
+
+event:
+  # Étape actuelle de l'événement. 1 = Appel d'orateurs, 2 = Appel de sponsors, 3 = Billetterie, 4 = Tracks
+  step: 1
+  datetime: 
+    start: 2026-11-19T08:30:00
+    end: 2026-11-19T18:00:00
+  location:
+    name: "ESIEA, Laval"
+    address: "38 Rue des Docteurs Calmette et Guérin, 53000 Laval"
+    coords:
+      lat: 48.087631
+      lng: -0.756373     
+  urls:
+    tickets: ""
+    sessionize: "https://sessionize.com/agile-laval-2026/"
+    sponsoring: "/assets/pdf/AgileLaval2026_Sponsoring.pdf"
+
+reasons_to_attend:
+  nb_conferences: 20
+  nb_workshops: 5
+  nb_attendees: 100
+
+about: 
+  total_events: 11
+  total_participants: "900+"
+  total_speakers: "150+"
+  total_sponsors: "20+"
+
+socials:
+  x: "https://x.com/AgileLaval"
+  linkedin: "https://www.linkedin.com/company/agilelaval/"
+  instagram: "https://www.instagram.com/agilelaval/"

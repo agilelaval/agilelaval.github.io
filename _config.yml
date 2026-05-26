@@ -1,0 +1,38 @@
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "themes"
+    values:
+      layout: "themes"
+  - scope:
+      path: "assets/**/*.pdf"
+    values:
+      sitemap: false
+
+collections_dir: "_collections"
+
+collections:
+  tracks:
+  team:
+  sponsors:
+  partners:
+
+# SEO plugin configuration
+title: "Agile Laval"
+description: "Rejoignez la communauté Agile Laval pour échanger, apprendre et partager autour des méthodes agiles. Découvrez nos événements, conférences et ateliers."
+logo: "/assets/images/logo_rond_bordeau.png"
+locale: "fr_FR"
+
+# Sitemap plugin configuration
+url: "https://www.agilelaval.org"
+
+# Date format plugin configuration
+lang: fr
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

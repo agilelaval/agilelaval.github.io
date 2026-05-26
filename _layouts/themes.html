@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<section class="theme-detail-section">
+    <div class="section-header">
+        <div class="icon-box" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px;">
+            {{ page.icon_svg }}
+        </div>
+        <span class="sur-title">Thématique</span>
+        <h1 class="section-title">{{ page.title }}</h1>
+        <p class="section-description">{{ page.description }}</p>
+    </div>
+
+    <div class="theme-content" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+        {{ content }}
+    </div>
+
+    <div class="section-actions" style="margin-top: 3rem;">
+        <a href="{{ '/' | relative_url }}" class="cta-outline">&larr; Retour à l'accueil</a>
+    </div>
+</section>
