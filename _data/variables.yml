@@ -3,7 +3,7 @@ association:
 
 event:
   # Étape actuelle de l'événement. 1 = Appel d'orateurs, 2 = Appel de sponsors, 3 = Billetterie, 4 = Tracks
-  step: 1
+  step: 3
   datetime: 
     start: 2026-11-19T08:30:00
     end: 2026-11-19T18:00:00
@@ -14,7 +14,7 @@ event:
       lat: 48.087631
       lng: -0.756373     
   urls:
-    tickets: ""
+    tickets: "https://www.helloasso.com/associations/agile-laval/evenements/agile-laval-2026-12eme-edition"
     sessionize: "https://sessionize.com/agile-laval-2026/"
     sponsoring: "/assets/pdf/AgileLaval2026_Sponsoring.pdf"
 
