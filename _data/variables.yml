@@ -16,6 +16,7 @@ event:
   urls:
     tickets: "https://www.helloasso.com/associations/agile-laval/evenements/agile-laval-2026-12eme-edition"
     sessionize: "https://sessionize.com/agile-laval-2026/"
+    sessionize_schedule: "https://agile-laval-2026.sessionize.com/schedule/day/20261119"
     sponsoring: "/assets/pdf/AgileLaval2026_Sponsoring.pdf"
 
 reasons_to_attend:
