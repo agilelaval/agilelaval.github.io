@@ -134,7 +134,8 @@ description: "Rejoignez la communauté Agile Laval pour échanger, apprendre et 
                 
                 <article class="speaker-profile">
                     {% if session.image and session.image != "" %}
-                        <img src="{{ '/assets/images/orators/' | append: session.image | relative_url }}" alt="{{ speaker_name }}" class="speaker-photo">
+                        {% if session.image contains "://" %}{% assign photo_src = session.image %}{% else %}{% assign photo_src = '/assets/images/orators/' | append: session.image | relative_url %}{% endif %}
+                        <img src="{{ photo_src }}" loading="lazy" alt="{{ speaker_name }}" class="speaker-photo">
                     {% else %}
                         <div class="speaker-photo-placeholder">
                             {% assign words = speaker_name | split: ' ' %}

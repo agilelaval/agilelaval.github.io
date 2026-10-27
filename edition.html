@@ -84,6 +84,8 @@ redirect_url: "/"
             </div>
         </div>
 
+        <p class="speaker-bio" id="modal-speaker-bio"></p>
+
         <div class="modal-body">
             <h4 class="session-title-large" id="modal-session-title">Titre de la session</h4>
             <p class="session-desc" id="modal-session-desc">Description...</p>
@@ -130,6 +132,7 @@ redirect_url: "/"
             company: "{{ row["Entreprise"] | escape }}",
             linkedinUrl: "{{ row["Lien profil LinkedIn"] | escape }}",
             maxCapacity: "{{ row["Nombre max. de participants"] | escape }}",
+            speakerBio: "{{ row["Biographie"] | escape }}",
             sessionTitle: "{{ row["Titre de la session"] | escape }}",
             sessionDesc: "{{ row["Description de la session"] | escape }}",
             sessionTrack: "{{ row["Track"] | escape }}"
@@ -154,7 +157,9 @@ redirect_url: "/"
             
             <article class="speaker-profile">
                 {% if session["Photo de l'orateur"] and session["Photo de l'orateur"] != "" %}
-                    <img src="{{ '/assets/images/orators/' | append: session["Photo de l'orateur"] | relative_url }}" alt="{{ speaker_name }}" class="speaker-photo">
+                    {% assign photo = session["Photo de l'orateur"] %}
+                    {% if photo contains "://" %}{% assign photo_src = photo %}{% else %}{% assign photo_src = '/assets/images/orators/' | append: photo | relative_url %}{% endif %}
+                    <img src="{{ photo_src }}" loading="lazy" alt="{{ speaker_name }}" class="speaker-photo">
                 {% else %}
                     <div class="speaker-photo-placeholder">
                         {% assign words = speaker_name | split: ' ' %}
