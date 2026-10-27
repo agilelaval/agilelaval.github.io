@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", function() {
 let rooms = [];
 // Index pour regrouper les sessions du même créneau
 let slotsGroups = {};
+const FULL_WIDTH_FORMATS = ['Pause', 'Plénière', 'Keynote'];
+
+// Une session est rangée dans la colonne de sa track ; à défaut, dans celle de sa salle
+function columnKey(session) {
+    return /^Track\s*\d+$/i.test(session.sessionTrack || '') ? session.sessionTrack.trim() : session.location;
+}
+
+// Photo : adresse web complète (https://...) ou nom de fichier dans assets/images/orators/
+function photoUrl(image) {
+    return /^https?:\/\//.test(image) ? image : `{{ 'assets/images/orators/' | relative_url }}${image}`;
+}
 
 function calculateTimeLabel(slotNumber, span = 1, showEnd = false) {
     const startSlot = parseInt(slotNumber);
@@ -29,14 +40,13 @@ function initProgramGrid() {
     const grid = document.getElementById("program-grid-container");
     if(!grid) return;
 
-    // Extraire les salles uniques
-    const roomSet = new Set();
+    // Colonnes = tracks (Track 1, Track 2...) plutôt que salles :
+    // les salles changent entre matin et après-midi, les tracks restent alignées.
+    const colSet = new Set();
     programData.forEach(s => {
-        if (s.location && s.location !== '-' && s.location !== 'Hall Admin') {
-            roomSet.add(s.location);
-        }
+        if (!FULL_WIDTH_FORMATS.includes(s.slotFormat)) colSet.add(columnKey(s));
     });
-    rooms = Array.from(roomSet).sort(); // Tri alpha ou personnalisable
+    rooms = Array.from(colSet).sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
 
     // Ajuster dynamiquement les colonnes de la grille
     grid.style.gridTemplateColumns = `120px repeat(${rooms.length}, 1fr)`;
@@ -48,6 +58,18 @@ function initProgramGrid() {
         slotsGroups[session.slotNumber].push(session);
         let endSlot = parseInt(session.slotNumber) + parseInt(session.slotSpan) - 1;
         if(endSlot > maxSlot) maxSlot = endSlot;
+    });
+
+    // Colonnes déjà occupées à chaque créneau (sessions qui s'étalent sur plusieurs créneaux)
+    const occupied = {};
+    programData.forEach(session => {
+        if (FULL_WIDTH_FORMATS.includes(session.slotFormat)) return;
+        const col = rooms.indexOf(columnKey(session));
+        const span = parseInt(session.slotSpan) || 1;
+        for (let k = 0; k < span; k++) {
+            const slot = parseInt(session.slotNumber) + k;
+            (occupied[slot] = occupied[slot] || new Set()).add(col);
+        }
     });
 
     // Dessiner la grille
@@ -63,14 +85,20 @@ function initProgramGrid() {
         // Placer les sessions
         if(slotsGroups[s]) {
             slotsGroups[s].forEach(session => {
-                const isFullWidth = ['Pause', 'Plénière', 'Keynote'].includes(session.slotFormat);
+                const isFullWidth = FULL_WIDTH_FORMATS.includes(session.slotFormat);
                 
                 let colStart, colSpan;
                 if (isFullWidth) {
                     colStart = 2;
-                    colSpan = rooms.length; // S'étale sur toutes les salles
+                    colSpan = rooms.length; // S'étale sur toutes les colonnes...
+                    // ...sauf celles déjà prises par un atelier qui se poursuit
+                    const taken = occupied[s];
+                    if (taken && taken.size) {
+                        const firstTaken = Math.min(...taken);
+                        colSpan = firstTaken > 0 ? firstTaken : rooms.length;
+                    }
                 } else {
-                    const roomIndex = rooms.indexOf(session.location);
+                    const roomIndex = rooms.indexOf(columnKey(session));
                     colStart = (roomIndex !== -1 ? roomIndex : 0) + 2; 
                     colSpan = 1;
                 }
@@ -169,7 +197,7 @@ function renderModalContent() {
     // Speaker Face
     const avatarBox = document.getElementById("modal-speaker-avatar");
     if(session.image && session.image.trim() !== "") {
-        avatarBox.innerHTML = `<img src="{{ 'assets/images/orators/' | relative_url}}${session.image}" alt="${session.oratorName}" onerror="this.style.display='none'; this.parentElement.innerText='${getInitials(session.oratorName)}';">`;
+        avatarBox.innerHTML = `<img src="${photoUrl(session.image)}" alt="${session.oratorName}" onerror="this.style.display='none'; this.parentElement.innerText='${getInitials(session.oratorName)}';">`;
     } else {
         avatarBox.innerHTML = getInitials(session.oratorName);
     }
@@ -177,6 +205,13 @@ function renderModalContent() {
     document.getElementById("modal-speaker-name").innerText = session.oratorName;
     document.getElementById("modal-speaker-job").innerText = session.company ? `${session.oratorJob} • ${session.company}` : session.oratorJob;
     
+    // Mini biographie
+    const bioBox = document.getElementById("modal-speaker-bio");
+    if (bioBox) {
+        bioBox.innerHTML = session.speakerBio || "";
+        bioBox.style.display = session.speakerBio ? "" : "none";
+    }
+
     // Link RS
     const linksBox = document.getElementById("modal-speaker-links");
     linksBox.innerHTML = "";
