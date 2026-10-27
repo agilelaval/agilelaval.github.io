@@ -2691,9 +2691,20 @@ body {
         }
     }
 
+    .speaker-bio {
+        font-family: $font-family-sans;
+        font-size: 0.9rem;
+        font-style: italic;
+        line-height: 1.6;
+        color: rgba($color-text-muted, 0.85);
+        border-left: 3px solid rgba(#A67F90, 0.4);
+        padding-left: 0.9rem;
+        margin: 0;
+    }
+
     .modal-body {
         position: relative;
-        
+
         .session-title-large {
             font-size: 1.3rem;
             font-weight: 800;
