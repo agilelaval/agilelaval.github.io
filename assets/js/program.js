@@ -48,8 +48,11 @@ function initProgramGrid() {
     });
     rooms = Array.from(colSet).sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
 
-    // Ajuster dynamiquement les colonnes de la grille
-    grid.style.gridTemplateColumns = `120px repeat(${rooms.length}, 1fr)`;
+    // Grille fluide : 120 sous-colonnes. À chaque créneau, les sessions se partagent
+    // toute la largeur libre, pour qu'il n'y ait jamais de colonne vide.
+    const U = 120;
+    grid.classList.add("is-fluid");
+    grid.style.gridTemplateColumns = `120px repeat(${U}, minmax(0, 1fr))`;
 
     // Regrouper les slots
     let maxSlot = 1;
@@ -60,21 +63,20 @@ function initProgramGrid() {
         if(endSlot > maxSlot) maxSlot = endSlot;
     });
 
-    // Colonnes déjà occupées à chaque créneau (sessions qui s'étalent sur plusieurs créneaux)
-    const occupied = {};
+    // Nombre de sessions en parallèle à chaque créneau (ateliers longs compris)
+    const concurrent = {};
     programData.forEach(session => {
         if (FULL_WIDTH_FORMATS.includes(session.slotFormat)) return;
-        const col = rooms.indexOf(columnKey(session));
         const span = parseInt(session.slotSpan) || 1;
         for (let k = 0; k < span; k++) {
             const slot = parseInt(session.slotNumber) + k;
-            (occupied[slot] = occupied[slot] || new Set()).add(col);
+            concurrent[slot] = (concurrent[slot] || 0) + 1;
         }
     });
 
-    // Dessiner la grille
+    let reserved = []; // plages tenues par les ateliers sur plusieurs créneaux : {end, a, b}
+
     for(let s = 1; s <= maxSlot; s++) {
-        // Dessiner l'entête horaire pour chaque ligne de la grille
         const timeDiv = document.createElement("div");
         timeDiv.className = "time-slot";
         timeDiv.style.gridRow = `${s} / span 1`;
@@ -82,54 +84,61 @@ function initProgramGrid() {
         timeDiv.innerText = calculateTimeLabel(s);
         grid.appendChild(timeDiv);
 
-        // Placer les sessions
-        if(slotsGroups[s]) {
-            slotsGroups[s].forEach(session => {
-                const isFullWidth = FULL_WIDTH_FORMATS.includes(session.slotFormat);
-                
-                let colStart, colSpan;
-                if (isFullWidth) {
-                    colStart = 2;
-                    colSpan = rooms.length; // S'étale sur toutes les colonnes...
-                    // ...sauf celles déjà prises par un atelier qui se poursuit
-                    const taken = occupied[s];
-                    if (taken && taken.size) {
-                        const firstTaken = Math.min(...taken);
-                        colSpan = firstTaken > 0 ? firstTaken : rooms.length;
-                    }
-                } else {
-                    const roomIndex = rooms.indexOf(columnKey(session));
-                    colStart = (roomIndex !== -1 ? roomIndex : 0) + 2; 
-                    colSpan = 1;
-                }
+        reserved = reserved.filter(r => r.end >= s);
+        const here = slotsGroups[s] || [];
+        const placements = [];
 
-                const rowSpan = parseInt(session.slotSpan) || 1;
-                
-                const card = document.createElement("div");
-                card.className = "session-card";
-                
-                // Si c'est un événement global, on ajoute une classe spécifique pour le styliser différemment
-                if (isFullWidth) card.classList.add("session-full-width");
-                if (session.slotFormat === 'Pause') card.classList.add("session-pause");
-                
-                card.style.gridRow = `${s} / span ${rowSpan}`;
-                card.style.gridColumn = `${colStart} / span ${colSpan}`;
-                
-                card.innerHTML = `
-                    <div>
-                        <h4 class="session-title">${session.sessionTitle}</h4>
-                        <p class="session-speaker">${session.oratorName}</p>
-                    </div>
-                    <div class="session-footer">
-                        <span class="session-format">${session.slotFormat}</span>
-                        <span class="session-room">${session.location}</span>
-                    </div>
-                `;
-
-                card.addEventListener("click", () => openModal(s, session));
-                grid.appendChild(card);
+        // 1. Les sessions longues prennent une colonne à droite, à la largeur
+        //    qu'elles auront au créneau le plus chargé qu'elles traversent
+        here.filter(x => !FULL_WIDTH_FORMATS.includes(x.slotFormat) && (parseInt(x.slotSpan) || 1) > 1)
+            .forEach(session => {
+                const span = parseInt(session.slotSpan) || 1;
+                let c = 1;
+                for (let k = 0; k < span; k++) c = Math.max(c, concurrent[s + k] || 1);
+                const right = Math.min(U, ...reserved.map(r => r.a));
+                const a = Math.max(0, Math.round(right - U / c));
+                reserved.push({ end: s + span - 1, a: a, b: right });
+                placements.push([session, a, right]);
             });
-        }
+
+        // 2. Le reste se partage la largeur libre à gauche
+        const limit = Math.min(U, ...reserved.map(r => r.a));
+        here.filter(x => FULL_WIDTH_FORMATS.includes(x.slotFormat))
+            .forEach(session => placements.push([session, 0, limit]));
+        const singles = here
+            .filter(x => !FULL_WIDTH_FORMATS.includes(x.slotFormat) && (parseInt(x.slotSpan) || 1) === 1)
+            .sort((x, y) => rooms.indexOf(columnKey(x)) - rooms.indexOf(columnKey(y)));
+        singles.forEach((session, i) => {
+            const w = limit / singles.length;
+            placements.push([session, Math.round(i * w), Math.round((i + 1) * w)]);
+        });
+
+        placements.forEach(([session, a, b]) => {
+            const isFullWidth = FULL_WIDTH_FORMATS.includes(session.slotFormat);
+            const rowSpan = parseInt(session.slotSpan) || 1;
+
+            const card = document.createElement("div");
+            card.className = "session-card";
+            if (isFullWidth) card.classList.add("session-full-width");
+            if (session.slotFormat === 'Pause') card.classList.add("session-pause");
+
+            card.style.gridRow = `${s} / span ${rowSpan}`;
+            card.style.gridColumn = `${a + 2} / ${b + 2}`;
+
+            card.innerHTML = `
+                <div>
+                    <h4 class="session-title">${session.sessionTitle}</h4>
+                    <p class="session-speaker">${session.oratorName}</p>
+                </div>
+                <div class="session-footer">
+                    <span class="session-format">${session.slotFormat}</span>
+                    <span class="session-room">${session.location}</span>
+                </div>
+            `;
+
+            card.addEventListener("click", () => openModal(s, session));
+            grid.appendChild(card);
+        });
     }
 }
 
