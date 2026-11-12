@@ -2352,6 +2352,16 @@ body {
             flex-direction: column;
             gap: 1.5rem;
         }
+
+        // Grille fluide (sous-colonnes) : l'espacement passe par les marges des cartes
+        &.is-fluid {
+            @media (min-width: 901px) {
+                column-gap: 0;
+
+                > .time-slot { margin-right: 0.5rem; }
+                > .session-card { margin: 0 0.25rem; min-width: 0; }
+            }
+        }
     }
 
     .time-slot {
